@@ -1,30 +1,37 @@
 import { Routes, Route } from "react-router-dom";
 
-// import Login from "./pages/Login/Login";
 import Login from "./pages/Login/Login";
 import Dashboard from "./pages/Dashboard/Dashboard";
+
 import ProtectedRoute from "./routes/ProtectedRoutes";
 import GuestRoute from "./routes/GuestRoute";
+
 import PageList from "./pages/Pages/PageList";
 import CreatePage from "./pages/Pages/CreatePage";
+import EditPage from "./pages/Pages/EditPage";
+import TrashPage from "./pages/Pages/TrashPage";
+
 import MenuList from "./pages/Menu/MenuList";
-import EditPage from "./pages/Pages/editpage";
 import CreateMenu from "./pages/Menu/CreateMenu";
 import EditMenu from "./pages/Menu/EditMenu";
+
 import UserList from "./pages/Users/UserList";
 import CreateUser from "./pages/Users/CreateUser";
 import EditUser from "./pages/Users/EditUser";
+
+import RoleList from "./pages/Roles/RoleList";
 import CreateRole from "./pages/Roles/CreateRole";
 import EditRole from "./pages/Roles/EditRole";
-import RoleList from "./pages/Roles/RoleList";
+
 import PrivilegeList from "./pages/Privileges/PrivilegeList";
 import CreatePrivilege from "./pages/Privileges/CreatePrivilege";
 import EditPrivilege from "./pages/Privileges/EditPrivilege";
-import TrashPage from "./pages/Pages/TrashPage";
+
 function App() {
     return (
-
         <Routes>
+
+            {/* Guest */}
             <Route
                 path="/"
                 element={
@@ -33,6 +40,8 @@ function App() {
                     </GuestRoute>
                 }
             />
+
+           
             <Route
                 path="/dashboard"
                 element={
@@ -42,20 +51,25 @@ function App() {
                 }
             />
 
+            {/* Pages */}
             <Route
                 path="/pages"
                 element={
                     <ProtectedRoute>
-                        <PageList />
+                       
+                            <PageList />
+                        
                     </ProtectedRoute>
                 }
             />
 
             <Route
-                path="pages/create"
+                path="/pages/create"
                 element={
                     <ProtectedRoute>
-                        <CreatePage />
+                        
+                            <CreatePage />
+                      
                     </ProtectedRoute>
                 }
             />
@@ -64,7 +78,9 @@ function App() {
                 path="/pages/:id/edit"
                 element={
                     <ProtectedRoute>
-                        <EditPage />
+                        
+                            <EditPage />
+                        
                     </ProtectedRoute>
                 }
             />
@@ -73,16 +89,21 @@ function App() {
                 path="/pages/trash"
                 element={
                     <ProtectedRoute>
-                        <TrashPage />
+                       
+                            <TrashPage />
+                        
                     </ProtectedRoute>
                 }
             />
 
+            {/* Menus */}
             <Route
                 path="/menus"
                 element={
                     <ProtectedRoute>
-                        <MenuList />
+                       
+                            <MenuList />
+                        
                     </ProtectedRoute>
                 }
             />
@@ -91,7 +112,9 @@ function App() {
                 path="/menus/create"
                 element={
                     <ProtectedRoute>
-                        <CreateMenu />
+                        
+                            <CreateMenu />
+                      
                     </ProtectedRoute>
                 }
             />
@@ -100,16 +123,21 @@ function App() {
                 path="/menus/:id/edit"
                 element={
                     <ProtectedRoute>
-                        <EditMenu />
+                       
+                            <EditMenu />
+                        
                     </ProtectedRoute>
                 }
             />
 
+            {/* Users */}
             <Route
                 path="/users"
                 element={
                     <ProtectedRoute>
-                        <UserList />
+                        
+                            <UserList />
+                       
                     </ProtectedRoute>
                 }
             />
@@ -118,7 +146,9 @@ function App() {
                 path="/users/create"
                 element={
                     <ProtectedRoute>
-                        <CreateUser />
+                       
+                            <CreateUser />
+                        
                     </ProtectedRoute>
                 }
             />
@@ -127,16 +157,21 @@ function App() {
                 path="/users/:id/edit"
                 element={
                     <ProtectedRoute>
-                        <EditUser />
+                        
+                            <EditUser />
+                      
                     </ProtectedRoute>
                 }
             />
 
+            {/* Roles */}
             <Route
                 path="/roles"
                 element={
                     <ProtectedRoute>
-                        <RoleList />
+                       
+                            <RoleList />
+                        
                     </ProtectedRoute>
                 }
             />
@@ -145,7 +180,9 @@ function App() {
                 path="/roles/create"
                 element={
                     <ProtectedRoute>
-                        <CreateRole />
+                        
+                            <CreateRole />
+                        
                     </ProtectedRoute>
                 }
             />
@@ -154,16 +191,21 @@ function App() {
                 path="/roles/:id/edit"
                 element={
                     <ProtectedRoute>
-                        <EditRole />
+                      
+                            <EditRole />
+                       
                     </ProtectedRoute>
                 }
             />
 
+            {/* Privileges */}
             <Route
                 path="/privileges"
                 element={
                     <ProtectedRoute>
-                        <PrivilegeList />
+                       
+                            <PrivilegeList />
+                       
                     </ProtectedRoute>
                 }
             />
@@ -172,7 +214,9 @@ function App() {
                 path="/privileges/create"
                 element={
                     <ProtectedRoute>
-                        <CreatePrivilege />
+                       
+                            <CreatePrivilege />
+                       
                     </ProtectedRoute>
                 }
             />
@@ -181,13 +225,16 @@ function App() {
                 path="/privileges/:id/edit"
                 element={
                     <ProtectedRoute>
-                        <EditPrivilege />
+                        
+                            <EditPrivilege />
+                       
                     </ProtectedRoute>
                 }
             />
 
+            
+
         </Routes>
-        
     );
 }
 

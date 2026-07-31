@@ -27,28 +27,40 @@ function MenuRow({
 }) {
     return (
         <>
-            <tr className="border-t">
+            <tr className="border-b hover:bg-gray-50 transition">
 
                 <td className="p-3">
 
                     <div
                         className="flex items-center"
                         style={{
-                            paddingLeft: `${level * 24}px`,
+                            paddingLeft: `${level * 28}px`,
                         }}
                     >
                         {level > 0 && (
-                            <span className="mr-2 text-gray-400">
-                                └─
+                            <span className="text-gray-400 mr-2 text-lg">
+                                ├─
                             </span>
                         )}
 
-                        {menu.title}
+                        <span className="mr-2">
+                            📁
+                        </span>
+
+                        <span className="font-medium">
+                            {menu.title}
+                        </span>
+
+                        {menu.children?.length > 0 && (
+                            <span className="ml-2 text-xs bg-gray-200 rounded-full px-2 py-0.5">
+                                {menu.children.length}
+                            </span>
+                        )}
                     </div>
 
                 </td>
 
-                <td className="p-3">
+                <td className="p-3 text-gray-600">
                     {menu.slug}
                 </td>
 
@@ -56,34 +68,57 @@ function MenuRow({
                     {menu.sort_order}
                 </td>
 
-                <td className="p-3 space-x-2">
+                <td className="p-3">
 
-                    <button
-                        onClick={() => handleEdit(menu)}
-                        className="text-blue-600 hover:underline"
+                    <span
+                        className={`px-2 py-1 rounded-full text-xs font-medium ${
+                            menu.is_active
+                                ? "bg-green-100 text-green-700"
+                                : "bg-red-100 text-red-700"
+                        }`}
                     >
-                        Edit
-                    </button>
+                        {menu.is_active
+                            ? "Active"
+                            : "Inactive"}
+                    </span>
 
-                    <button
-                        onClick={() => onDelete(menu)}
-                        className="text-red-600 hover:underline"
-                    >
-                        Delete
-                    </button>
+                </td>
+
+                <td className="p-3">
+
+                    <div className="flex gap-2">
+
+                        <button
+                            onClick={() => onEdit(menu)}
+                            className="px-3 py-1 rounded bg-blue-600 text-white hover:bg-blue-700 text-sm"
+                        >
+                            ✏ Edit
+                        </button>
+
+                        <button
+                            onClick={() => onDelete(menu)}
+                            className="px-3 py-1 rounded bg-red-600 text-white hover:bg-red-700 text-sm"
+                        >
+                            🗑 Delete
+                        </button>
+
+                    </div>
 
                 </td>
 
             </tr>
 
             {menu.children?.length > 0 && (
+
                 <MenuTree
                     menus={menu.children}
                     level={level + 1}
                     onEdit={onEdit}
                     onDelete={onDelete}
                 />
+
             )}
+
         </>
     );
 }
