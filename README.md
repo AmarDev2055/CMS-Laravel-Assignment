@@ -395,9 +395,6 @@ public/storage
 * Permission-Based Sidebar
 * Rich Dashboard Charts
 * Public React Website
-* Email Notifications
-* Multi-language Support
-* Theme Management
 
 ---
 
