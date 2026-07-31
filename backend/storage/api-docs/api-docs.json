@@ -138,6 +138,29 @@
                 ]
             }
         },
+        "/api/dashboard": {
+            "get": {
+                "tags": [
+                    "Dashboard"
+                ],
+                "summary": "Dashboard statistics",
+                "description": "Returns statistics, recent pages and recent users for the CMS dashboard.",
+                "operationId": "dashboard",
+                "responses": {
+                    "200": {
+                        "description": "Dashboard data retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/menus": {
             "get": {
                 "tags": [
@@ -1302,6 +1325,10 @@
         {
             "name": "Testing",
             "description": "Testing"
+        },
+        {
+            "name": "Dashboard",
+            "description": "Dashboard"
         },
         {
             "name": "Privileges",

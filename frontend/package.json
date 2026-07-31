@@ -14,10 +14,13 @@
     "@ckeditor/ckeditor5-react": "^11.2.0",
     "@tanstack/react-query": "^5.101.4",
     "axios": "^1.18.1",
+    "chart.js": "^4.5.1",
     "lucide-react": "^1.28.0",
     "react": "^19.2.7",
+    "react-chartjs-2": "^5.3.1",
     "react-dom": "^19.2.7",
     "react-hook-form": "^7.83.0",
+    "react-icons": "^5.7.0",
     "react-router-dom": "^7.18.1"
   },
   "devDependencies": {

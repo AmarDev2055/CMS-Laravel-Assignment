@@ -8,7 +8,7 @@ use App\Http\Controllers\Api\MenuController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\PrivilegeController;
-
+use App\Http\Controllers\Api\DashboardController;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
@@ -21,9 +21,11 @@ Route::prefix('public')->group(function () {
     Route::get('/pages/{slug}', [PageController::class, 'showPublic']);
 });
 
-Route::middleware('auth:sanctum')->get('/test-permission', [AuthController::class, 'testPermission']);
+// Route::middleware('auth:sanctum')->get('/test-permission', [AuthController::class, 'testPermission']);
 
 Route::middleware('auth:sanctum')->group(function () {
+
+    Route::get('/dashboard', [DashboardController::class, 'index']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
 
