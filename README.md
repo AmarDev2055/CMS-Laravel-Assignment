@@ -300,7 +300,7 @@ admin@example.com
 Password
 
 ```
-password
+password123
 ```
 
 ---
