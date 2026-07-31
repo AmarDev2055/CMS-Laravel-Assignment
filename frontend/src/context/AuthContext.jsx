@@ -18,6 +18,7 @@ export function AuthProvider({ children }) {
 
         authApi.currentUser()
             .then((response) => {
+                console.log("Current User API:", response.data);
                 setUser(response.data);
             })
             .catch(() => {

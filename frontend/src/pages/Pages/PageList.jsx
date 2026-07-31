@@ -3,9 +3,12 @@ import Layout from "../../components/layout/Layout";
 import * as pageApi from "../../api/pages";
 import * as menuApi from "../../api/menus";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 export default function PageList() {
 
     const navigate = useNavigate();
+    const currentUser = JSON.parse(localStorage.getItem("user") || "{}");
+    const isModerator = currentUser?.role === "Moderator";
 
     const [pages, setPages] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -19,6 +22,11 @@ export default function PageList() {
     const [perPage, setPerPage] = useState(10);
 
     const [menus, setMenus] = useState([]);
+
+    const { user } = useAuth();
+
+console.log(user);
+console.log(user?.roles);
 
     useEffect(() => {
 
@@ -165,16 +173,18 @@ export default function PageList() {
                                 <th className="text-left p-3">Published</th>
 
                                 <th className="text-center p-3">
-                                    Actions
-                                </th>
-                                <th className="text-center p-3">
-                                    <button
-                                            onClick={() => navigate("/pages/trash")}
-                                            className="bg-gray-700 text-white px-4 py-2 rounded"
-                                        >
-                                            Trash
-                                        </button>
-                                </th>
+    Actions
+</th>
+{!isModerator && (
+    <th className="text-center p-3">
+        <button
+            onClick={() => navigate("/pages/trash")}
+            className="bg-gray-700 text-white px-4 py-2 rounded"
+        >
+            Trash
+        </button>
+    </th>
+)}
 
                             </tr>
 

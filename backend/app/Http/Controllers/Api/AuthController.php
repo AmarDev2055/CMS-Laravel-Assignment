@@ -25,7 +25,7 @@ class AuthController extends Controller
                     example: 'admin@example.com'
                 ),
                 new OA\Property(
-                    property: 'password',
+                    property: 'password123',
                     type: 'string',
                     format: 'password',
                     example: 'password'
@@ -119,12 +119,22 @@ class AuthController extends Controller
         description: 'Unauthenticated'
     )]
 
-    public function me()
-    {
-        return response()->json(
-            request()->user()->load('roles')
-        );
-    }
+  public function me()
+{
+    $user = request()->user();
+
+    return response()->json([
+        'id' => $user->id,
+        'name' => $user->name,
+        'email' => $user->email,
+        'roles' => $user->roles->pluck('name')->values(),
+        'privileges' => $user->roles
+            ->flatMap(fn ($role) => $role->privileges)
+            ->pluck('slug')
+            ->unique()
+            ->values(),
+    ]);
+}
 
 #[OA\Get(
         path: '/api/test-privilege',

@@ -68,7 +68,7 @@ function MenuRow({
                     {menu.sort_order}
                 </td>
 
-                <td className="p-3">
+                {/* <td className="p-3">
 
                     <span
                         className={`px-2 py-1 rounded-full text-xs font-medium ${
@@ -82,7 +82,7 @@ function MenuRow({
                             : "Inactive"}
                     </span>
 
-                </td>
+                </td> */}
 
                 <td className="p-3">
 
@@ -92,14 +92,14 @@ function MenuRow({
                             onClick={() => onEdit(menu)}
                             className="px-3 py-1 rounded bg-blue-600 text-white hover:bg-blue-700 text-sm"
                         >
-                            ✏ Edit
+                            Edit
                         </button>
 
                         <button
                             onClick={() => onDelete(menu)}
                             className="px-3 py-1 rounded bg-red-600 text-white hover:bg-red-700 text-sm"
                         >
-                            🗑 Delete
+                             Delete
                         </button>
 
                     </div>

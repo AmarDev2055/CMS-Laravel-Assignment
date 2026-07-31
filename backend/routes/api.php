@@ -9,10 +9,8 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\PrivilegeController;
 use App\Http\Controllers\Api\DashboardController;
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
-
+Route::get('/user', [AuthController::class, 'me'])
+    ->middleware('auth:sanctum');
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::prefix('public')->group(function () {
