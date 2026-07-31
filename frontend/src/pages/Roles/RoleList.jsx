@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Plus, Edit, Trash2 } from "lucide-react";
 
 import Layout from "../../components/Layout/Layout";
 import * as roleApi from "../../api/roles";
 
 export default function RoleList() {
-
     const navigate = useNavigate();
 
     const [roles, setRoles] = useState([]);
@@ -16,174 +16,166 @@ export default function RoleList() {
     }, []);
 
     async function loadRoles() {
-
         try {
-
-            const response = await roleApi.getRoles();
-
-            setRoles(response.data.data);
-
+            const { data } = await roleApi.getRoles();
+            setRoles(data.data);
         } catch (error) {
-
             console.error(error);
-
         } finally {
-
             setLoading(false);
-
         }
-
     }
 
     async function handleDelete(id) {
-
         if (!window.confirm("Delete this role?")) return;
 
         try {
-
             await roleApi.deleteRole(id);
-
             loadRoles();
-
         } catch (error) {
-
             console.error(error);
-
             alert("Unable to delete role.");
-
         }
-
     }
 
     if (loading) {
         return (
             <Layout>
-                Loading...
+                <div className="flex justify-center items-center h-64 text-gray-500">
+                    Loading roles...
+                </div>
             </Layout>
         );
     }
 
     return (
-
         <Layout>
+            <div className="space-y-6">
 
-            <div className="flex justify-between items-center mb-6">
+                {/* Header */}
+                <div className="flex items-center justify-between">
+                    <div>
+                        <h1 className="text-3xl font-bold text-gray-800">
+                            Roles
+                        </h1>
 
-                <h1 className="text-3xl font-bold">
-                    Roles
-                </h1>
+                        <p className="text-gray-500 mt-1">
+                            Manage user roles and permissions
+                        </p>
+                    </div>
 
-                <button
-                    onClick={() => navigate("/roles/create")}
-                    className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-                >
-                    Add Role
-                </button>
+                    <button
+                        onClick={() => navigate("/roles/create")}
+                        className="flex items-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-xl hover:bg-blue-700 transition shadow"
+                    >
+                        <Plus size={18} />
+                        Add Role
+                    </button>
+                </div>
 
-            </div>
 
-            <div className="bg-white rounded shadow">
+                {/* Role Table */}
+                <div className="bg-white rounded-2xl shadow-sm border overflow-hidden">
 
-                <table className="w-full">
+                    <table className="w-full">
 
-                    <thead className="bg-gray-100">
+                        <thead className="bg-gray-50 border-b">
+                            <tr>
+                                <th className="p-4 text-left text-sm font-semibold text-gray-600">
+                                    Name
+                                </th>
 
-                        <tr>
+                                <th className="p-4 text-left text-sm font-semibold text-gray-600">
+                                    Description
+                                </th>
 
-                            <th className="p-3 text-left">
-                                Name
-                            </th>
+                                <th className="p-4 text-left text-sm font-semibold text-gray-600">
+                                    Users
+                                </th>
 
-                            <th className="p-3 text-left">
-                                Description
-                            </th>
+                                <th className="p-4 text-left text-sm font-semibold text-gray-600">
+                                    Privileges
+                                </th>
 
-                            <th className="p-3 text-left">
-                                Users
-                            </th>
-
-                            <th className="p-3 text-left">
-                                Privileges
-                            </th>
-
-                            <th className="p-3 text-center">
-                                Actions
-                            </th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                        {roles.map(role => (
-
-                            <tr
-                                key={role.id}
-                                className="border-t"
-                            >
-
-                                <td className="p-3 font-medium">
-                                    {role.name}
-                                </td>
-
-                                <td className="p-3">
-                                    {role.description || "-"}
-                                </td>
-
-                                <td className="p-3">
-                                    {role.users_count}
-                                </td>
-
-                                <td className="p-3">
-
-                                    <div className="flex flex-wrap gap-1">
-
-                                        {role.privileges.map(privilege => (
-
-                                            <span
-                                                key={privilege.id}
-                                                className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs"
-                                            >
-                                                {privilege.name}
-                                            </span>
-
-                                        ))}
-
-                                    </div>
-
-                                </td>
-
-                                <td className="p-3 text-center">
-
-                                   <button
-                                        onClick={() => navigate(`/roles/${role.id}/edit`)}
-                                        className="text-blue-600 mr-3"
-                                    >
-                                        Edit
-                                    </button>
-
-                                    <button
-                                        onClick={() => handleDelete(role.id)}
-                                        className="text-red-600"
-                                    >
-                                        Delete
-                                    </button>
-
-                                </td>
-
+                                <th className="p-4 text-center text-sm font-semibold text-gray-600">
+                                    Actions
+                                </th>
                             </tr>
+                        </thead>
 
-                        ))}
 
-                    </tbody>
+                        <tbody>
+                            {roles.length === 0 ? (
+                                <tr>
+                                    <td
+                                        colSpan="5"
+                                        className="text-center py-10 text-gray-400"
+                                    >
+                                        No roles found.
+                                    </td>
+                                </tr>
+                            ) : (
+                                roles.map((role) => (
+                                    <tr
+                                        key={role.id}
+                                        className="border-t hover:bg-gray-50 transition"
+                                    >
+                                        <td className="p-4 font-medium text-gray-800">
+                                            {role.name}
+                                        </td>
 
-                </table>
+                                        <td className="p-4 text-gray-600">
+                                            {role.description || "-"}
+                                        </td>
+
+                                        <td className="p-4">
+                                            <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
+                                                {role.users_count}
+                                            </span>
+                                        </td>
+
+                                        <td className="p-4">
+                                            <div className="flex flex-wrap gap-2">
+                                                {role.privileges?.map((privilege) => (
+                                                    <span
+                                                        key={privilege.id}
+                                                        className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium"
+                                                    >
+                                                        {privilege.name}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </td>
+
+                                        <td className="p-4">
+                                            <div className="flex justify-center gap-2">
+
+                                                <button
+                                                    onClick={() => navigate(`/roles/${role.id}/edit`)}
+                                                    className="p-2 rounded-lg bg-blue-100 text-blue-600 hover:bg-blue-200"
+                                                >
+                                                    <Edit size={16} />
+                                                </button>
+
+                                                <button
+                                                    onClick={() => handleDelete(role.id)}
+                                                    className="p-2 rounded-lg bg-red-100 text-red-600 hover:bg-red-200"
+                                                >
+                                                    <Trash2 size={16} />
+                                                </button>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))
+                            )}
+                        </tbody>
+
+                    </table>
+
+                </div>
 
             </div>
-
         </Layout>
-
     );
-
 }

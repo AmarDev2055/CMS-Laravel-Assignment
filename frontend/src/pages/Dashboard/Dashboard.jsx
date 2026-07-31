@@ -16,16 +16,13 @@ import RecentPages from "../../components/dashboard/RecentPages";
 import RecentUsers from "../../components/dashboard/RecentUsers";
 import DashboardCharts from "../../components/dashboard/DashboardCharts";
 import Layout from "../../components/Layout/Layout";
+import DashboardLoader from "../Dashboard/DashboardLoader";
 
 export default function Dashboard() {
     const { dashboard, loading, error } = useDashboard();
 
     if (loading)
-        return (
-            <div className="p-8">
-                Loading dashboard...
-            </div>
-        );
+         return <DashboardLoader />;
 
     if (error)
         return (
