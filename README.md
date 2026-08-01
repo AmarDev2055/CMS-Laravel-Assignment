@@ -84,7 +84,7 @@ A modern Content Management System (CMS) built with **Laravel 12**, **React (Vit
 ## Clone Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/laravel-cms.git
+git clone https://github.com/AmarDev2055/CMS-Laravel-Assignment.git
 
 cd laravel-cms
 ```
