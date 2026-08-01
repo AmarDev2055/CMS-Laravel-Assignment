@@ -180,7 +180,7 @@ admin@example.com
 Password
 
 ```
-password
+password123
 ```
 
 Privileges
