@@ -33,7 +33,7 @@
                                         "type": "string",
                                         "example": "admin@example.com"
                                     },
-                                    "password": {
+                                    "password123": {
                                         "type": "string",
                                         "format": "password",
                                         "example": "password"
@@ -1094,6 +1094,31 @@
                 ]
             }
         },
+        "/api/translations/{locale}": {
+            "get": {
+                "tags": [
+                    "Translations"
+                ],
+                "summary": "Get translations",
+                "operationId": "f27096c7b9f57386c024797ee94399d5",
+                "parameters": [
+                    {
+                        "name": "locale",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "en"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Translation list"
+                    }
+                }
+            }
+        },
         "/api/users": {
             "get": {
                 "tags": [
@@ -1333,6 +1358,10 @@
         {
             "name": "Privileges",
             "description": "Privileges"
+        },
+        {
+            "name": "Translations",
+            "description": "Translations"
         }
     ]
 }

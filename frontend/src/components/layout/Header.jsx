@@ -1,8 +1,13 @@
 import { useAuth } from "../../context/AuthContext";
 import { Search, Bell, LogOut, ChevronDown } from "lucide-react";
-
+import { useLanguage } from "../../context/LanguageContext";
 export default function Header() {
     const { user, logout } = useAuth();
+    const {
+    language,
+    changeLanguage,
+    t,
+} = useLanguage();
 
     async function handleLogout() {
         await logout();
@@ -16,7 +21,7 @@ export default function Header() {
             <div className="flex items-center gap-6">
                 <div>
                     <h1 className="text-xl font-bold text-gray-800">Laravel CMS</h1>
-                    <p className="text-xs text-gray-400">Admin Dashboard</p>
+                    <p className="text-xs text-gray-400"> {t("admin_dashboard")}</p>
                 </div>
 
                 {/* Search */}
@@ -28,6 +33,28 @@ export default function Header() {
 
             {/* Right Section */}
             <div className="flex items-center gap-5">
+                <div className="flex items-center gap-2">
+                    <button
+                        onClick={() => changeLanguage("en")}
+                        className={`px-3 py-1 rounded-lg text-sm ${
+                            language === "en"
+                                ? "bg-blue-600 text-white"
+                                : "bg-gray-200"
+                        }`}
+                    >
+                        EN
+                    </button>
+                    <button
+                        onClick={() => changeLanguage("ar")}
+                        className={`px-3 py-1 rounded-lg text-sm ${
+                            language === "ar"
+                                ? "bg-blue-600 text-white"
+                                : "bg-gray-200"
+                        }`}
+                    >
+                        عربي
+                    </button>
+                </div>
 
                 {/* Notification */}
                 <button className="relative p-2 rounded-full hover:bg-gray-100 transition">

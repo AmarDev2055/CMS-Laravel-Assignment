@@ -9,9 +9,16 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\PrivilegeController;
 use App\Http\Controllers\Api\DashboardController;
+use App\Http\Controllers\Api\TranslationController;
+
 Route::get('/user', [AuthController::class, 'me'])
     ->middleware('auth:sanctum');
 Route::post('/login', [AuthController::class, 'login']);
+
+Route::get(
+    '/translations/{locale}',
+    [TranslationController::class, 'index']
+);
 
 Route::prefix('public')->group(function () {
     Route::get('/menus', [MenuController::class, 'publicMenus']);

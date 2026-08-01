@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { navigation } from "../../config/navigation";
 import { useAuth } from "../../context/AuthContext";
 import { LayoutDashboard, Users, Shield, KeyRound, FileText, Settings, LogOut, ChevronRight } from "lucide-react";
+import { useLanguage } from "../../context/LanguageContext";
 
 const icons = {
     Dashboard: LayoutDashboard,
@@ -12,8 +13,15 @@ const icons = {
     Settings: Settings,
 };
 
+
+
 export default function Sidebar() {
     const { user } = useAuth();
+    const {
+        language,
+        changeLanguage,
+        t,
+    } = useLanguage();
     const isModerator = user?.roles?.includes("Moderator");
 
     const filteredNavigation = navigation.filter((item) => {
@@ -28,8 +36,8 @@ export default function Sidebar() {
 
             {/* Logo */}
             <div className="px-6 py-5 border-b border-gray-800">
-                <h1 className="text-2xl font-bold tracking-wide">CMS Admin</h1>
-                <p className="text-xs text-gray-400 mt-1">Management Dashboard</p>
+                <h1 className="text-2xl font-bold tracking-wide">{t("cms_admin")}</h1>
+                <p className="text-xs text-gray-400 mt-1">{t("management_dashboard")}</p>
             </div>
 
             {/* Navigation */}

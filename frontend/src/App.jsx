@@ -27,6 +27,8 @@ import PrivilegeList from "./pages/Privileges/PrivilegeList";
 import CreatePrivilege from "./pages/Privileges/CreatePrivilege";
 import EditPrivilege from "./pages/Privileges/EditPrivilege";
 
+import NotFound from "./pages/Error/NotFound";
+
 function App() {
     return (
         <Routes>
@@ -232,7 +234,7 @@ function App() {
                 }
             />
 
-            
+            <Route path="*" element={<NotFound />} />
 
         </Routes>
     );

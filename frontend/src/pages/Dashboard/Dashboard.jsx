@@ -18,8 +18,11 @@ import DashboardCharts from "../../components/dashboard/DashboardCharts";
 import Layout from "../../components/Layout/Layout";
 import DashboardLoader from "../Dashboard/DashboardLoader";
 
+import { useLanguage } from "../../context/LanguageContext";
+
 export default function Dashboard() {
     const { dashboard, loading, error } = useDashboard();
+    const { t } = useLanguage();
 
     if (loading)
          return <DashboardLoader />;
@@ -38,7 +41,7 @@ export default function Dashboard() {
         <div className="p-6 space-y-6">
 
             <h1 className="text-3xl font-bold">
-                Dashboard
+                {t("dashboard")}
             </h1>
 
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
