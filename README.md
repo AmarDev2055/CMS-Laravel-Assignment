@@ -1,137 +1,81 @@
-# Laravel CMS with React Admin Panel
+# Laravel CMS
 
-A full-featured Content Management System (CMS) built with **Laravel 12**, **React**, **Vite**, **Laravel Sanctum**, and **CKEditor 5**.
+A modern Content Management System (CMS) built with **Laravel 12**, **React (Vite)**, **Laravel Sanctum**, and **Swagger (OpenAPI)**.
 
 ---
 
 # Features
 
-## Authentication
+## Backend
 
-* Laravel Sanctum Authentication
-* Bearer Token Authentication
-* Login / Logout
-* Protected Routes
-* Guest Routes
-
----
-
-## User Management
-
-* List Users
-* Create User
-* Edit User
-* Delete User
-* Assign Multiple Roles
-
----
-
-## Role Management
-
-* List Roles
-* Create Roles
-* Edit Roles
-* Delete Roles
-* Assign Multiple Privileges
+- Laravel 12 REST API
+- Laravel Sanctum Authentication
+- Role Based Access Control (RBAC)
+- Privilege Based Authorization
+- CRUD for Pages
+- CRUD for Menus
+- CRUD for Users
+- CRUD for Roles
+- CRUD for Privileges
+- Soft Delete & Restore Pages
+- Dashboard Statistics API
+- Public Website API
+- Swagger API Documentation
+- API Resource Responses
+- Request Validation
+- Service Layer Architecture
+- Image Upload Support
+- Slug Generation
+- Translation API (English / Arabic)
+- Audit Logging Support
+- Created By / Updated By Tracking
 
 ---
 
-## Privilege Management
+## Frontend (Admin)
 
-* List Privileges
-* Create Privileges
-* Edit Privileges
-* Delete Privileges
-
----
-
-## Menu Management
-
-* Nested Menu Structure
-* Parent / Child Menus
-* Unlimited Nesting
-* Sort Order
-* Menu Tree View
-
----
-
-## Page Management
-
-* Create Pages
-* Edit Pages
-* Delete Pages
-* Restore Deleted Pages
-* Permanently Delete Pages
-* CKEditor 5 Integration
-* Cover Image Upload
-* Scheduled Publishing
-* Draft & Published Status
-* Slug Generation
-* Menu Assignment
-* Search
-* Filtering
-* Pagination
+- React + Vite
+- Authentication
+- Dashboard
+- Statistics
+- Page Management
+- Menu Management
+- User Management
+- Role Management
+- Privilege Management
+- Protected Routes
+- Privilege Protected Pages
+- Responsive UI
+- English / Arabic Language Support
 
 ---
 
-## Audit System
+## Public Website
 
-Every page stores:
-
-* Created By
-* Updated By
-* Created At
-* Updated At
-
----
-
-## Soft Delete
-
-Pages support:
-
-* Soft Delete
-* Trash
-* Restore
-* Force Delete
+- Dynamic Navigation Menu
+- Dynamic Pages
+- Page Details
+- Public REST API
+- Dynamic Routing using Page Slugs
 
 ---
 
-## Public APIs
-
-* Public Menus
-* Public Published Pages
-* Public Page by Slug
-
----
-
-# Technology Stack
+# Technologies
 
 ## Backend
 
-* PHP 8.3+
-* Laravel 12
-* Laravel Sanctum
-* MySQL
-* Swagger (L5 Swagger)
+- Laravel 12
+- Sanctum
+- MySQL
+- Swagger (L5 Swagger)
 
 ## Frontend
 
-* React
-* React Router DOM
-* Axios
-* Vite
-* Tailwind CSS
-* CKEditor 5
-
----
-
-# Requirements
-
-* PHP >= 8.3
-* Composer
-* Node.js >= 20
-* npm
-* MySQL 8+
+- React
+- React Router
+- Axios
+- Tailwind CSS
+- Lucide Icons
 
 ---
 
@@ -140,126 +84,58 @@ Pages support:
 ## Clone Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/YOUR_USERNAME/laravel-cms.git
 
-cd cms-project
+cd laravel-cms
 ```
 
 ---
 
-## Install Backend Dependencies
+# Backend Setup
 
 ```bash
+cd backend
+
 composer install
 ```
 
----
-
-## Install Frontend Dependencies
-
-```bash
-npm install
-```
-
----
-
-# Environment Configuration
-
-Copy the environment file.
+Copy environment file
 
 ```bash
 cp .env.example .env
 ```
 
-Generate the application key.
+Generate key
 
 ```bash
 php artisan key:generate
 ```
 
----
+Configure database inside
 
-# Database Configuration
-
-Update your `.env`
-
-```env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=cms-laravel
-DB_USERNAME=root
-DB_PASSWORD=
+```
+.env
 ```
 
----
-
-# Storage Link
-
-Required for uploaded images.
-
-```bash
-php artisan storage:link
-```
-
----
-
-# Database Migration
+Run migrations
 
 ```bash
 php artisan migrate
 ```
 
----
-
-# Database Seed
+Seed database
 
 ```bash
 php artisan db:seed
 ```
 
-The seeders create:
-
-* Admin User
-* Moderator User
-* Roles
-* Privileges
-* Sample Menus
-* Sample Pages
-
----
-
-# Sanctum
-
-Sanctum is used for API authentication.
-
-Generate a token by logging in through:
-
-```
-POST /api/login
-```
-
-Use the returned Bearer Token for all protected endpoints.
-
----
-
-# Swagger
-
-Generate API documentation.
+Create storage link
 
 ```bash
-php artisan l5-swagger:generate
+php artisan storage:link
 ```
 
-Swagger URL
-
-```
-http://localhost:8000/api/documentation
-```
-
----
-
-# Run Backend
+Start server
 
 ```bash
 php artisan serve
@@ -273,9 +149,13 @@ http://localhost:8000
 
 ---
 
-# Run Frontend
+# Frontend Setup
 
 ```bash
+cd frontend
+
+npm install
+
 npm run dev
 ```
 
@@ -287,9 +167,9 @@ http://localhost:5173
 
 ---
 
-# Default Login
+# Seeded Login Accounts
 
-## Admin
+## Administrator
 
 Email
 
@@ -300,8 +180,17 @@ admin@example.com
 Password
 
 ```
-password123
+password
 ```
+
+Privileges
+
+- Full Access
+- User Management
+- Role Management
+- Privilege Management
+- Menu Management
+- Page Management
 
 ---
 
@@ -319,85 +208,270 @@ Password
 password
 ```
 
----
+Privileges
 
-# Project Structure
-
-```
-app/
-    Http/
-    Models/
-    Services/
-
-database/
-    migrations/
-    seeders/
-
-resources/
-
-routes/
-
-frontend/
-    src/
-        api/
-        components/
-        pages/
-        routes/
-```
-
----
-
-# Available Modules
-
-* Authentication
-* Dashboard
-* Users
-* Roles
-* Privileges
-* Menus
-* Pages
-* Trash Management
+- List Pages
+- Create Pages
+- Edit Pages
+- Manage Menus
 
 ---
 
 # API Authentication
 
-All protected endpoints require:
+## Login
 
 ```
-Authorization: Bearer YOUR_TOKEN
+POST /api/login
+```
+
+### Example Request
+
+```json
+{
+    "email": "admin@example.com",
+    "password": "password"
+}
+```
+
+### Example Response
+
+```json
+{
+    "token": "1|xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "user": {
+        "id": 1,
+        "name": "Admin",
+        "email": "admin@example.com"
+    }
+}
+```
+
+Copy the token.
+
+---
+
+## Swagger Authorization
+
+Open Swagger
+
+```
+http://localhost:8000/api/documentation
+```
+
+Click **Authorize**
+
+Enter
+
+```
+Bearer 1|xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+Example
+
+```
+Bearer 1|2yHsd8d4f2abcaYx1mM5P8V8kL9Qw...
+```
+
+Click
+
+```
+Authorize
+```
+
+You can now access all protected endpoints.
+
+---
+
+# Swagger Documentation
+
+Available at
+
+```
+http://localhost:8000/api/documentation
 ```
 
 ---
 
-# Upload Directory
+# Public API
 
-Uploaded images are stored in
-
-```
-storage/app/public/pages
-```
-
-Accessible through
+## Get Public Pages
 
 ```
-public/storage
+GET /api/public/pages
 ```
 
 ---
 
-# Future Enhancements
+## Get Page by Slug
 
-* Dashboard Analytics
-* Activity Logs
-* Media Library
-* Drag & Drop Menu Ordering
-* Permission-Based Sidebar
-* Rich Dashboard Charts
-* Public React Website
+```
+GET /api/public/pages/{slug}
+```
+
+Example
+
+```
+GET /api/public/pages/about-us
+```
 
 ---
 
-# License
+## Get Public Menu
 
-This project is intended for educational and portfolio purposes.
+```
+GET /api/public/menus
+```
+
+---
+
+# Default API Endpoints
+
+Authentication
+
+```
+POST /api/login
+POST /api/logout
+GET /api/user
+```
+
+Dashboard
+
+```
+GET /api/dashboard
+```
+
+Pages
+
+```
+GET /api/pages
+POST /api/pages
+PUT /api/pages/{id}
+DELETE /api/pages/{id}
+POST /api/pages/{id}/restore
+```
+
+Menus
+
+```
+GET /api/menus
+POST /api/menus
+PUT /api/menus/{id}
+DELETE /api/menus/{id}
+```
+
+Users
+
+```
+GET /api/users
+POST /api/users
+PUT /api/users/{id}
+DELETE /api/users/{id}
+```
+
+Roles
+
+```
+GET /api/roles
+POST /api/roles
+PUT /api/roles/{id}
+DELETE /api/roles/{id}
+```
+
+Privileges
+
+```
+GET /api/privileges
+POST /api/privileges
+PUT /api/privileges/{id}
+DELETE /api/privileges/{id}
+```
+
+---
+
+# Architecture
+
+```
+Controllers
+      │
+      ▼
+Services
+      │
+      ▼
+Models
+      │
+      ▼
+Database
+```
+
+The application follows a Service Layer Architecture to keep controllers clean and business logic reusable.
+
+---
+
+# Authorization
+
+Authentication is handled using Laravel Sanctum.
+
+Authorization uses Role-Based Access Control (RBAC) with Privileges.
+
+Example privileges include:
+
+- list-pages
+- create-pages
+- edit-pages
+- delete-pages
+- restore-pages
+- manage-users
+- manage-roles
+- manage-privileges
+- manage-menus
+
+Routes are protected using the custom `CheckPrivilege` middleware.
+
+---
+
+# Internationalization
+
+The CMS supports:
+
+- English
+- Arabic
+
+Translations are served through the Laravel Translation API and consumed by the React frontend.
+
+---
+
+# Audit Features
+
+The CMS records:
+
+- Created By
+- Updated By
+
+Each page stores:
+
+- creator
+- last updater
+- timestamps
+
+---
+
+# Testing
+
+Run the test suite using:
+
+```bash
+php artisan serve
+```
+
+Or
+
+```bash
+vendor/bin/phpunit
+```
+
+---
+
+# Author
+
+Developed as a full-stack Laravel CMS using Laravel 12 and React.
