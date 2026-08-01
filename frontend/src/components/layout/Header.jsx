@@ -57,10 +57,10 @@ export default function Header() {
                 </div>
 
                 {/* Notification */}
-                <button className="relative p-2 rounded-full hover:bg-gray-100 transition">
+                {/* <button className="relative p-2 rounded-full hover:bg-gray-100 transition">
                     <Bell size={22} className="text-gray-600" />
                     <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" />
-                </button>
+                </button> */}
 
                 {/* User */}
                 <div className="flex items-center gap-3 border-l pl-5">

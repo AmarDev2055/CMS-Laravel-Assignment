@@ -14,7 +14,7 @@ export function AuthProvider({ children }) {
         if (!token) {
             setLoading(false);
             return;
-        }
+        }   
 
         authApi.currentUser()
             .then((response) => {

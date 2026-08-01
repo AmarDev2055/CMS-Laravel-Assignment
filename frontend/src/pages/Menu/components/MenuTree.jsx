@@ -3,6 +3,7 @@ export default function MenuTree({
     level = 0,
     onEdit,
     onDelete,
+    isModerator,
 }) {
     return (
         <>
@@ -13,6 +14,7 @@ export default function MenuTree({
                     level={level}
                     onEdit={onEdit}
                     onDelete={onDelete}
+                    isModerator={isModerator}
                 />
             ))}
         </>
@@ -24,6 +26,7 @@ function MenuRow({
     level,
     onEdit,
     onDelete,
+    isModerator,
 }) {
     return (
         <>
@@ -95,12 +98,14 @@ function MenuRow({
                             Edit
                         </button>
 
-                        <button
-                            onClick={() => onDelete(menu)}
-                            className="px-3 py-1 rounded bg-red-600 text-white hover:bg-red-700 text-sm"
-                        >
-                             Delete
-                        </button>
+                          {!isModerator && (
+        <button
+            onClick={() => onDelete(menu)}
+            className="text-red-600 hover:underline"
+        >
+            Delete
+        </button>
+    )}
 
                     </div>
 
@@ -115,6 +120,7 @@ function MenuRow({
                     level={level + 1}
                     onEdit={onEdit}
                     onDelete={onDelete}
+                    isModerator={isModerator}
                 />
 
             )}

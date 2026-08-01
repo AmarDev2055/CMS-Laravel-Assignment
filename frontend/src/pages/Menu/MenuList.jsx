@@ -4,10 +4,14 @@ import * as menuApi from "../../api/menus";
 import MenuTree from "./components/MenuTree";
 import { useNavigate } from "react-router-dom";
 import { Plus, Edit, Trash2 } from "lucide-react";
-
+import { useAuth } from "../../context/AuthContext";
 export default function MenuList() {
     const navigate = useNavigate();
+    const { user } = useAuth();
 
+    const isModerator = user?.roles?.includes("Moderator");
+
+    
     const [menus, setMenus] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -121,6 +125,7 @@ export default function MenuList() {
                                     menus={menus}
                                     onEdit={handleEdit}
                                     onDelete={handleDelete}
+                                    isModerator={isModerator}
                                 />
                             )}
                         </tbody>
